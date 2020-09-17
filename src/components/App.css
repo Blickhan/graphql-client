@@ -6,3 +6,11 @@
   border-radius: 3px;
   box-shadow: 5px 5px 5px #ccc;
 }
+
+h1 {
+  font-weight: 200;
+}
+
+h2 {
+  font-weight: 300;
+}

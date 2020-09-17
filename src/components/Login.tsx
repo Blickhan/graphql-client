@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Input, Button, Alert } from 'antd';
 import { useMutation, gql } from '@apollo/client';
-import { useAuth } from '../authContext';
+import { useAuth } from '../auth.context';
 
 const LOGIN = gql`
   mutation Login($username: String!, $password: String!) {
     login(userInput: { username: $username, password: $password }) {
-      error {
+      errors {
         message
       }
       user {
@@ -24,8 +24,8 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [login] = useMutation(LOGIN, {
     onCompleted({ login }) {
-      setLoggedInUser(login.user);
       localStorage.setItem('loggedInUser', JSON.stringify(login.user));
+      setLoggedInUser(login.user);
     },
   });
 
@@ -35,15 +35,15 @@ const Login = () => {
     try {
       const {
         data: {
-          login: { error },
+          login: { errors },
         },
       } = await login({ variables: { username, password } });
 
-      if (error) {
-        setErrorMessage(error.message);
+      if (errors) {
+        throw new Error(errors[0].message);
       }
     } catch (e) {
-      console.error(e);
+      setErrorMessage(e.message);
     }
   };
 

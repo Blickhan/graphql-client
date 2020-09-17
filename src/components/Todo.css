@@ -1,0 +1,43 @@
+.todo {
+  font-size: 14pt;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.todo:hover {
+  font-style: italic;
+}
+
+.spread {
+  display: flex;
+  justify-content: space-between;
+}
+
+.completed {
+  text-decoration: line-through;
+  font-style: italic;
+}
+
+.title {
+  width: 100%;
+}
+
+.todo:hover .delete {
+  display: block !important;
+}
+
+.todo:hover > .divider {
+  border-bottom-color: #ddd;
+}
+
+.divider {
+  border-bottom: 1px solid #efefef;
+}
+
+.todo:nth-child(even) .divider {
+  width: 75%;
+}
+
+.todo:nth-child(odd) .divider {
+  width: 66%;
+}
