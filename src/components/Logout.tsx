@@ -25,7 +25,7 @@ const Logout = () => {
     try {
       await logout();
     } catch (e) {
-      message.error(e);
+      message.error(e.message);
     }
   };
   return (

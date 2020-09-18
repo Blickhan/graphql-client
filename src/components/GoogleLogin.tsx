@@ -13,7 +13,6 @@ const AUTH_GOOGLE = gql`
       }
       user {
         id
-        username
       }
     }
   }
@@ -29,6 +28,7 @@ export default (): JSX.Element => {
   });
 
   const loginWithGoogle = async (response: GoogleLoginResponse) => {
+    console.log(response);
     try {
       const {
         data: {
