@@ -6,14 +6,15 @@ import { WebSocketLink } from '@apollo/client/link/ws';
 import App from './components/App';
 import { AuthProvider } from './auth.context';
 import cache from './cache';
+import config from './config';
 
 const httpLink = new HttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: config.graphqlUrl,
   credentials: 'include',
 });
 
 export const wsLink = new WebSocketLink({
-  uri: 'ws://localhost:4000/subscriptions',
+  uri: config.subscriptionsUrl,
   options: {
     reconnect: true,
   },

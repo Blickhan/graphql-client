@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Input, Button, Alert } from 'antd';
 import { useMutation, gql } from '@apollo/client';
 import { useAuth } from '../auth.context';
+import GoogleLogin from './GoogleLogin';
 
 const LOGIN = gql`
   mutation Login($username: String!, $password: String!) {
@@ -77,6 +78,10 @@ const Login = () => {
           Login
         </Button>
       </div>
+      <br />
+      <h3 style={{ fontStyle: 'italic', fontWeight: 300 }}>or</h3>
+      <br />
+      <GoogleLogin />
     </div>
   );
 };
