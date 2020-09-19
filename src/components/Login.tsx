@@ -5,8 +5,8 @@ import { useAuth } from '../auth.context';
 import GoogleLogin from './GoogleLogin';
 
 const LOGIN = gql`
-  mutation Login($email: String!, $password: String!) {
-    login(userInput: { email: $email, password: $password }) {
+  mutation Login($username: String!, $password: String!) {
+    login(userInput: { username: $username, password: $password }) {
       errors {
         message
       }
@@ -19,7 +19,7 @@ const LOGIN = gql`
 
 const Login = () => {
   const { setLoggedInUser } = useAuth();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const [login] = useMutation(LOGIN, {
@@ -37,7 +37,7 @@ const Login = () => {
         data: {
           login: { errors },
         },
-      } = await login({ variables: { email, password } });
+      } = await login({ variables: { username, password } });
 
       if (errors) {
         throw new Error(errors[0].message);
@@ -58,9 +58,9 @@ const Login = () => {
       <div style={{ paddingBottom: '10px' }}>
         <Input
           style={{ maxWidth: '300px' }}
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
       </div>
       <div style={{ paddingBottom: '10px' }}>
