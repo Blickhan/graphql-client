@@ -2,7 +2,6 @@ import ClientConfig from './Config';
 
 const config: ClientConfig = {
   nodeEnv: 'development',
-  port: 3000,
   graphqlUrl: 'http://localhost:4000/graphql',
   subscriptionsUrl: 'ws://localhost:4000/subscriptions',
   googleClientId:

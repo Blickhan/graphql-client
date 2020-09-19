@@ -28,7 +28,6 @@ export default (): JSX.Element => {
   });
 
   const loginWithGoogle = async (response: GoogleLoginResponse) => {
-    console.log(response);
     try {
       const {
         data: {
