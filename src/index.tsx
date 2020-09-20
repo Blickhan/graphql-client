@@ -9,13 +9,11 @@ import { AuthProvider } from './auth.context';
 import cache from './cache';
 require('dotenv').config();
 
-console.log(process.env.REACT_APP_GRAPHQL_URL);
 const httpLink = new HttpLink({
   uri: process.env.REACT_APP_GRAPHQL_URL,
   credentials: 'include',
 });
 
-console.log(process.env.REACT_APP_SUBSCRIPTIONS_URL);
 export const subscriptionClient = new SubscriptionClient(
   process.env.REACT_APP_SUBSCRIPTIONS_URL!,
   {
