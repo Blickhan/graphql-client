@@ -3,22 +3,26 @@ import ReactDOM from 'react-dom';
 import { split, ApolloClient, ApolloProvider, HttpLink } from '@apollo/client';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { WebSocketLink } from '@apollo/client/link/ws';
+import { SubscriptionClient } from 'subscriptions-transport-ws';
 import App from './components/App';
 import { AuthProvider } from './auth.context';
 import cache from './cache';
 import config from './config';
 
+console.log(config);
 const httpLink = new HttpLink({
   uri: config.graphqlUrl,
   credentials: 'include',
 });
 
-export const wsLink = new WebSocketLink({
-  uri: config.subscriptionsUrl,
-  options: {
+console.log(config);
+export const subscriptionClient = new SubscriptionClient(
+  config.subscriptionsUrl,
+  {
     reconnect: true,
-  },
-});
+  }
+);
+const wsLink = new WebSocketLink(subscriptionClient);
 
 const splitLink = split(
   ({ query }) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, message } from 'antd';
 import { useMutation, gql } from '@apollo/client';
-import { wsLink } from '../index';
+import { subscriptionClient } from '../index';
 import { useAuth } from '../auth.context';
 
 const LOGOUT = gql`
@@ -17,7 +17,7 @@ const Logout = () => {
       localStorage.clear();
       setLoggedInUser(null);
       await cache.reset(); // clear local state
-      wsLink['subscriptionClient'].close(); // close open subscriptions
+      subscriptionClient.close(); // close open subscriptions
     },
   });
 
