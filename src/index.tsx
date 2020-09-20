@@ -1,4 +1,3 @@
-require('dotenv').config();
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { split, ApolloClient, ApolloProvider, HttpLink } from '@apollo/client';
@@ -8,6 +7,7 @@ import { SubscriptionClient } from 'subscriptions-transport-ws';
 import App from './components/App';
 import { AuthProvider } from './auth.context';
 import cache from './cache';
+require('dotenv').config();
 
 console.log(process.env.REACT_APP_GRAPHQL_URL);
 const httpLink = new HttpLink({
