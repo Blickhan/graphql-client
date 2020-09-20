@@ -7,17 +7,16 @@ import { SubscriptionClient } from 'subscriptions-transport-ws';
 import App from './components/App';
 import { AuthProvider } from './auth.context';
 import cache from './cache';
-import config from './config';
 
-console.log(config);
+console.log(process.env.GRAPHQL_URL);
 const httpLink = new HttpLink({
-  uri: config.graphqlUrl,
+  uri: process.env.GRAPHQL_URL,
   credentials: 'include',
 });
 
-console.log(config);
+console.log(process.env.SUBSCRIPTIONS_URL);
 export const subscriptionClient = new SubscriptionClient(
-  config.subscriptionsUrl,
+  process.env.SUBSCRIPTIONS_URL!,
   {
     reconnect: true,
   }

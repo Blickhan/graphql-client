@@ -3,7 +3,6 @@ import { message } from 'antd';
 import { useMutation, gql } from '@apollo/client';
 import GoogleLogin, { GoogleLoginResponse } from 'react-google-login';
 import { useAuth } from '../auth.context';
-import config from '../config';
 
 const AUTH_GOOGLE = gql`
   mutation AuthGoogle($accessToken: String!) {
@@ -47,7 +46,7 @@ export default (): JSX.Element => {
 
   return (
     <GoogleLogin
-      clientId={config.googleClientId}
+      clientId={process.env.GOOGLE_CLIENT_ID!}
       // @ts-ignore
       onSuccess={loginWithGoogle}
       onFailure={({ error, details }) => message.error(`${error}: ${details}`)}
