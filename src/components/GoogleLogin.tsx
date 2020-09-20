@@ -46,7 +46,7 @@ export default (): JSX.Element => {
 
   return (
     <GoogleLogin
-      clientId={process.env.GOOGLE_CLIENT_ID!}
+      clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID!}
       // @ts-ignore
       onSuccess={loginWithGoogle}
       onFailure={({ error, details }) => message.error(`${error}: ${details}`)}

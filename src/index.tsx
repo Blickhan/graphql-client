@@ -1,3 +1,4 @@
+require('dotenv').config();
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { split, ApolloClient, ApolloProvider, HttpLink } from '@apollo/client';
@@ -8,15 +9,15 @@ import App from './components/App';
 import { AuthProvider } from './auth.context';
 import cache from './cache';
 
-console.log(process.env.GRAPHQL_URL);
+console.log(process.env.REACT_APP_GRAPHQL_URL);
 const httpLink = new HttpLink({
-  uri: process.env.GRAPHQL_URL,
+  uri: process.env.REACT_APP_GRAPHQL_URL,
   credentials: 'include',
 });
 
-console.log(process.env.SUBSCRIPTIONS_URL);
+console.log(process.env.REACT_APP_SUBSCRIPTIONS_URL);
 export const subscriptionClient = new SubscriptionClient(
-  process.env.SUBSCRIPTIONS_URL!,
+  process.env.REACT_APP_SUBSCRIPTIONS_URL!,
   {
     reconnect: true,
   }
