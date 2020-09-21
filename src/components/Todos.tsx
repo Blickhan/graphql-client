@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Spin } from 'antd';
+import { Spin, message } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useQuery, gql } from '@apollo/client';
 import { get } from 'lodash';
@@ -34,9 +34,9 @@ const TODO_UPDATED = gql`
 
 export default () => {
   const [isFakeLoading, setIsFakeLoading] = useState(true);
-  const { data, loading, subscribeToMore } = useQuery<{ todos: TodoModel[] }>(
-    TODOS
-  );
+  const { data, loading, subscribeToMore, error } = useQuery<{
+    todos: TodoModel[];
+  }>(TODOS);
 
   useEffect(() => {
     subscribeToMore({
@@ -86,6 +86,10 @@ export default () => {
   if (loading || isFakeLoading) {
     const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
     return <Spin indicator={antIcon} />;
+  }
+
+  if (error) {
+    message.error(error.message);
   }
 
   return (
